@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi dengan Audio dan Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background: #007BFF;
+            color: #fff;
+            padding: 20px 10px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .materi {
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            color: #007BFF;
+        }
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn {
+            display: inline-block;
+            background: #007BFF;
+            color: #fff;
+            padding: 10px 15px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .quiz {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .quiz p {
+            margin: 0 0 10px;
+        }
+        .quiz input[type="text"] {
+            padding: 10px;
+            width: calc(100% - 22px);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #007BFF;
+            color: white;
+        }
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header {
+                font-size: 18px;
+                padding: 15px 10px;
+            }
+            .container {
+                padding: 15px;
+                margin: 10px;
+            }
+            .btn {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Website Materi dengan Audio dan Quiz</h1>
+    </header>
+    <div class="container" id="materiContainer">
+        <!-- Materi Awal -->
+        <div class="materi">
+            <h2>Materi 1: Pengenalan HTML</h2>
+            <p>HTML adalah bahasa dasar untuk membuat website. Dengan HTML, kita bisa menyusun struktur halaman web.</p>
+            <audio controls>
+                <source src="audio/materi1.mp3" type="audio/mpeg">
+                Browser Anda tidak mendukung elemen audio.
+            </audio>
+        </div>
+        <div class="materi">
+            <h2>Materi 2: CSS untuk Tampilan</h2>
+            <p>CSS digunakan untuk mendesain tampilan website agar lebih menarik dan responsif.</p>
+            <audio controls>
+                <source src="audio/materi2.mp3" type="audio/mpeg">
+                Browser Anda tidak mendukung elemen audio.
+            </audio>
+        </div>
+    </div>
+    <div class="container">
+        <button class="btn" id="addMateri">Tambah Materi</button>
+    </div>
+    
+    <!-- Fitur Quiz -->
+    <div class="container quiz">
+        <h2>Quiz: Tes Pengetahuan Anda</h2>
+        <p>Pertanyaan: Apa singkatan dari HTML?</p>
+        <input type="text" id="answer" placeholder="Masukkan jawaban Anda">
+        <button class="btn" id="submitAnswer">Kirim Jawaban</button>
+        <p id="feedback"></p>
+    </div>
+
+    <footer>
+        &copy; 2024 Website Materi
+    </footer>
+
+    <script>
+        // Fungsi untuk menambahkan materi baru
+        document.getElementById("addMateri").addEventListener("click", function() {
+            const materiContainer = document.getElementById("materiContainer");
+
+            // Elemen baru
+            const newMateri = document.createElement("div");
+            newMateri.classList.add("materi");
+
+            // Isi konten materi baru
+            newMateri.innerHTML = `
+                <h2>Materi Baru</h2>
+                <p>Ini adalah materi tambahan. Anda dapat mengganti teks ini dengan konten materi yang sesuai.</p>
+                <audio controls>
+                    <source src="audio/materi-baru.mp3" type="audio/mpeg">
+                    Browser Anda tidak mendukung elemen audio.
+                </audio>
+            `;
+            materiContainer.appendChild(newMateri);
+        });
+
+        // Fungsi untuk memeriksa jawaban quiz
+        document.getElementById("submitAnswer").addEventListener("click", function() {
+            const answer = document.getElementById("answer").value.trim().toLowerCase();
+            const feedback = document.getElementById("feedback");
+
+            // Jawaban yang benar
+            if (answer === "hypertext markup language") {
+                feedback.textContent = "Jawaban Anda benar! 🎉";
+                feedback.style.color = "green";
+            } else {
+                feedback.textContent = "Jawaban Anda salah. Coba lagi!";
+                feedback.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>
